@@ -11215,3 +11215,138 @@ textarea.qcld_seo-multi-line {
   }
 
 }
+
+
+.qcld-plugins-lists {
+  padding: 25px;
+}
+.qcld-plugins-lists h3 {
+  font-size: 1.15rem;
+}
+
+.qcld-plugins-lists .plugin-card-top {
+  box-shadow: 0px 20px 50px 0px rgba(10.000000000000002, 22.000000000000007, 37, .08);
+  border-style: solid;
+  border-color: #fff;
+  border-radius: 10px;
+}
+
+.qcld-plugins-lists .plugin-card {
+  border: 1px solid #fff;
+  border-radius: 10px;
+}
+
+.qcld-plugins-lists .plugin-card:hover {
+  background: #e9f3f1;
+}
+
+.qcld-plugins-lists a.install-now.button {
+  background: #08344e;
+  color: #fff;
+}
+
+.qcld-plugins-lists a.install-now.button {
+  background: #08344e;
+  color: #fff;
+  border: 1px solid #08344e;
+}
+
+
+.qcld-plugins-lists a.button.activate-now {
+  background: #cd5c5c;
+  color: #fff;
+  border: 1px solid #cd5c5c;
+}
+.qcld-support-new-page {
+  padding: 30px 0 0 0;
+}
+
+.qcilist-support .qcld-plugins-lists a {
+  color: #000000;
+}
+
+.qcld-plugins-lists .plugin-card .name {
+  margin-right: 93px;
+}
+
+.qcld-support-new-page {
+  padding: 30px 0 0 0;
+  width: 99%;
+
+}
+
+.qcld-support-new-page .support-btn-main{
+  background: #d2ebe5;
+  border-radius: 8px;
+  padding: 15px 0;
+}
+.qcld-plugins-lists {
+  padding: 25px 0;
+}
+
+.qcilist-support .support-btn a{
+  background: #08344e !important;
+  border: 1px solid #08344e !important;
+}
+
+.qcilist-support .support-btn .premium-support-free {
+  background: #ffef61 !important;
+  color: #000;
+}
+.qcilist-support h5 {
+  margin-bottom: 20px;
+}
+.qcilist-support .py-3 {
+  padding-bottom: 6px !important;
+  font-weight: bold;
+}
+.action-pro-links {
+  position: absolute;
+  bottom: 0;
+  right: 15px;
+}
+.action-pro-links ul {
+  display: flex;
+}
+.action-pro-links ul li{
+  
+}
+.action-pro-links ul li a {
+  background: #08344e00;
+  color: #000 !important;
+  border: 1px solid #08344e;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 0 2px;
+}
+
+.qcilist-support .qcld-plugins-loading{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+  min-height:50vh;
+  height:100%;
+}
+
+.qcilist-support .qcld-plugins-loading img {
+  width:250px;
+  height: 250px;
+}
+
+.action-pro-links ul li:last-child a {
+  background: #cd5c5c00;
+  color: #cd5c5c !important;
+  border: 1px solid #cd5c5c;
+}
+
+@media (max-width: 991px) {
+  .plugin-card {
+    width: calc(100% - 8px);
+} 
+
+.plugin-card .action-links {
+  position: absolute !important;
+}
+
+}

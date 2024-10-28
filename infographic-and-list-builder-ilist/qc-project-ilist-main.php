@@ -3,7 +3,7 @@
 * Plugin Name: Infographic Maker iList
 * Plugin URI: https://wordpress.org/plugins/infographic-and-list-builder-iList
 * Description: Infographics & elegant Lists with charts and graphs. Build HTML, Responsive infographics & elegant Text or Image Lists quickly.
-* Version: 4.7.7
+* Version: 4.7.9
 * Author: QuantumCloud
 * Author URI: https://www.quantumcloud.com/
 * Requires at least: 4.6
@@ -276,7 +276,7 @@ $ilist_feedback = new Wp_Usage_ilist_Feedback(
 
 
 
-//add_action( 'admin_notices', 'qcopd_ilist_pro_notice', 100 );
+add_action( 'admin_notices', 'qcopd_ilist_pro_notice', 100 );
 if(!function_exists('qcopd_ilist_pro_notice')){
     function qcopd_ilist_pro_notice(){
         global $pagenow, $typenow;
@@ -289,7 +289,7 @@ if(!function_exists('qcopd_ilist_pro_notice')){
                 printf(
                     __('%s  %s  %s', 'dna88-wp-notice'),
                     '<a href="'.esc_url('https://www.quantumcloud.com/products/infographic-maker-ilist/').'" target="_blank">',
-                    '<img src="'.esc_url(QCOPD_IMG_URL1).'/4th-of-july.gif" >',
+                    '<img src="'.esc_url(QCOPD_IMG_URL1).'/halloween-iList.jpg" >',
                     '</a>'
                 );
             ?>
