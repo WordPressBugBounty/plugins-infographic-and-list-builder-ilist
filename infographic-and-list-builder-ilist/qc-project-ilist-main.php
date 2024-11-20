@@ -3,11 +3,11 @@
 * Plugin Name: Infographic Maker iList
 * Plugin URI: https://wordpress.org/plugins/infographic-and-list-builder-iList
 * Description: Infographics & elegant Lists with charts and graphs. Build HTML, Responsive infographics & elegant Text or Image Lists quickly.
-* Version: 4.8.0
+* Version: 4.8.1
 * Author: QuantumCloud
 * Author URI: https://www.quantumcloud.com/
 * Requires at least: 4.6
-* Tested up to: 6.6.2
+* Tested up to: 6.7
 * Domain Path: /lang/
 * Text Domain: iList
 * License: GPL2
@@ -276,7 +276,7 @@ $ilist_feedback = new Wp_Usage_ilist_Feedback(
 
 
 
-//add_action( 'admin_notices', 'qcopd_ilist_pro_notice', 100 );
+add_action( 'admin_notices', 'qcopd_ilist_pro_notice', 100 );
 if(!function_exists('qcopd_ilist_pro_notice')){
     function qcopd_ilist_pro_notice(){
         global $pagenow, $typenow;
@@ -284,12 +284,12 @@ if(!function_exists('qcopd_ilist_pro_notice')){
 
         if( ( isset($typenow) && $typenow == 'ilist' )  || ( isset($screen->base) && ($screen->base == 'ilist_page_qcpro-promo-page-ilist-free-page-123za' || $screen->base == 'ilist_page_ilist_settings' ) ) ){
         ?>
-        <div id="message-ilist" class="notice notice-info is-dismissible" style="padding:4px 0px 0px 4px;background:#C13825;">
+        <div id="message-ilist" class="notice notice-info is-dismissible" style="padding:4px 0px 0px 4px;background:#151618;">
             <?php
                 printf(
                     __('%s  %s  %s', 'dna88-wp-notice'),
                     '<a href="'.esc_url('https://www.quantumcloud.com/products/infographic-maker-ilist/').'" target="_blank">',
-                    '<img src="'.esc_url(QCOPD_IMG_URL1).'/halloween-iList.jpg" >',
+                    '<img src="'.esc_url(QCOPD_IMG_URL1).'/blackfriday24-ilist.jpg" >',
                     '</a>'
                 );
             ?>
