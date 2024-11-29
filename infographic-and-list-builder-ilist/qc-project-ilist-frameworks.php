@@ -53,6 +53,7 @@ if(!function_exists('ilist_register_plugin_settings')){
 
     // OpenAI
     register_setting( 'qc-ilist-plugin-settings-group', 'sl_openai_auto_generate_enable', $args );
+    register_setting( 'qc-ilist-plugin-settings-group', 'sl_openai_disable_ai_content_assistant', $args );
     register_setting( 'qc-ilist-plugin-settings-group', 'sl_openai_api_key', $args );
     register_setting( 'qc-ilist-plugin-settings-group', 'sl_openai_engines', $args );
     register_setting( 'qc-ilist-plugin-settings-group', 'sl_openai_max_token', $args );
@@ -165,6 +166,11 @@ if(!function_exists('qc_ilist_settings_page_callback_func')){
             <th scope="row"><?php echo esc_html( 'Enable OpenAI Auto-generate Description' , 'iList' ); ?></th>
             <td><input type="checkbox" name="sl_openai_auto_generate_enable" value="on" <?php echo (esc_attr( get_option('sl_openai_auto_generate_enable') )=='on'?'checked="checked"':''); ?> />
               <i><?php echo esc_html( 'Enable OpenAI Auto-generate Description' , 'iList' ); ?></i></td>
+          </tr>
+          <tr valign="top">
+            <th scope="row"><?php echo esc_html( 'Disable Floating Icon for AI Content Writing Assistant' , 'iList' ); ?></th>
+            <td><input type="checkbox" name="sl_openai_disable_ai_content_assistant" value="on" <?php echo (esc_attr( get_option('sl_openai_disable_ai_content_assistant') )=='on'?'checked="checked"':''); ?> />
+              <i><?php echo esc_html( 'Disable Floating Icon for AI Content Writing Assistant in the Backend' , 'iList' ); ?></i></td>
           </tr>
           <tr valign="top">
             <th scope="row"><?php echo esc_html( 'API KEY' , 'iList' ); ?></th>

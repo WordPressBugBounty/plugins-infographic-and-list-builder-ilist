@@ -3,11 +3,11 @@
 * Plugin Name: Infographic Maker iList
 * Plugin URI: https://wordpress.org/plugins/infographic-and-list-builder-iList
 * Description: Infographics & elegant Lists with charts and graphs. Build HTML, Responsive infographics & elegant Text or Image Lists quickly.
-* Version: 4.8.1
+* Version: 4.8.2
 * Author: QuantumCloud
 * Author URI: https://www.quantumcloud.com/
 * Requires at least: 4.6
-* Tested up to: 6.7
+* Tested up to: 6.7.1
 * Domain Path: /lang/
 * Text Domain: iList
 * License: GPL2
@@ -37,6 +37,14 @@ if ( ! defined( 'QCOPD_INC_DIR1' ) ) {
     define('QCOPD_INC_DIR1', QCOPD_DIR1 . "/inc");
 }
 
+if ( ! defined( 'QCOPD_DIR' ) ) {
+    define('QCOPD_DIR', dirname(__FILE__));
+}
+
+if ( ! defined( 'QCOPD_INC_URL_INC' ) ) {
+    define('QCOPD_INC_URL_INC', QCOPD_URL1 . "/inc");
+}
+
 /**
  * Do not forget about translating your plugin
  */
@@ -59,6 +67,11 @@ require_once( 'qc-project-ilist-fa.php' );
 require_once('class-plugin-deactivate-feedback.php');
 require_once('qc-support-promo-page/class-qc-support-promo-page.php');
 require_once('class-qc-free-plugin-upgrade-notice.php');
+
+
+require_once( QCOPD_DIR . '/inc/inc/parsedown.php' );
+require_once( QCOPD_DIR . '/inc/inc/qcld-floating-openai-style-filter.php' );
+require_once( QCOPD_DIR . '/inc/inc/qcld_openai_floating_content.php' );
 
 if(!function_exists('qcld_ilist_order_index_catalog_menu_page')){
     function qcld_ilist_order_index_catalog_menu_page( $menu_ord ){
