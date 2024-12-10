@@ -460,7 +460,7 @@ function qcld_openai_title_generate_desc() {
 
     }
 	
-	set_time_limit(600);
+	set_time_limit(10000);
 
     $title  		= isset( $_POST['title'] ) ? sanitize_text_field($_POST['title']) : '';
     $number  		= isset( $_POST['number'] ) ? sanitize_text_field($_POST['number']) : '';
@@ -474,6 +474,10 @@ function qcld_openai_title_generate_desc() {
     $fpenalty       = get_option('sl_openai_frequency_penalty');
 
     $result_data 	= '';
+
+
+
+  
 
     if(!empty($title)){
 
@@ -601,8 +605,11 @@ function qcld_openai_title_generate_desc() {
 
         global $wpdb;
 
+
 		$results = $wpdb->get_results( "SELECT * FROM $wpdb->postmeta WHERE post_id = $post_id AND meta_key = 'qcld_text_group'" );
 		
+              
+
 		//If li-id not exists in the cookie, then prceed to vote
 
 			if(!empty($results)){
@@ -621,8 +628,6 @@ function qcld_openai_title_generate_desc() {
 						$title_value = preg_replace( "/['\"]+/", "", $title_value );
 
 						$prompt         = "rewrite this paragraph for a unique artical:\n\n" . $title_value;
-
-
 
 				        $gptkeyword = [];
 				        $gptkeywords = [];
@@ -718,10 +723,15 @@ function qcld_openai_title_generate_desc() {
 
 				            $result_short_data = preg_replace('/[\*]+/', '', $result_short_data );
 
+				            //qcld_text_image
+
+				            $imgresult  = apply_filters('qcld_ilist_openai_text_img',  $title_value, $post_id );
+
 							$new_sl_array[] = array(
 												'qcld_text_title' 		=> $title_value,	
 												'qcld_text_desc'  		=> $result_short_data,
-												'qcld_text_long_desc'  	=> $result_data
+												'qcld_text_long_desc'  	=> $result_data,
+												'qcld_text_image'  		=> $imgresult
 											);	
 
 					        
@@ -787,11 +797,17 @@ function qcld_openai_title_generate_desc() {
 
 					        $result_short_data 	= isset( $results->choices[0]->text ) ? trim( $results->choices[0]->text ) : '';
 
+				            $imgresult  = apply_filters('qcld_ilist_openai_text_img',  $title_value, $post_id );
+
 							$new_sl_array[] = array(
 												'qcld_text_title' 		=> $title_value,	
 												'qcld_text_desc'  		=> $result_short_data,
-												'qcld_text_long_desc'  	=> $result_data
+												'qcld_text_long_desc'  	=> $result_data,
+												'qcld_text_image'  		=> $imgresult
 											);	
+
+
+
 						}
 
 					}
@@ -826,3 +842,120 @@ function qcld_openai_title_generate_desc() {
 	}
 }
 add_action( 'wp_ajax_qcld_openai_title_generate_desc', 'qcld_openai_title_generate_desc');
+
+
+
+add_filter('qcld_ilist_openai_text_img', 'qcld_ilist_openai_text_img_callback', 10, 2 );
+if ( ! function_exists( 'qcld_ilist_openai_text_img_callback' ) ) {
+function qcld_ilist_openai_text_img_callback( $qcld_article_text, $post_id ){
+
+
+    $OPENAI_API_KEY = get_option('sl_openai_api_key');
+    $ai_engines     = get_option('sl_openai_engines');
+    $max_token      = get_option('sl_openai_max_token');
+    $temperature    = get_option('sl_openai_temperature');
+    $ppenalty       = get_option('sl_openai_presence_penalty');
+    $fpenalty       = get_option('sl_openai_frequency_penalty');
+
+    $imgresult = '';
+
+	$img_size = "1024x1024";
+    
+    $request_body = [
+        "prompt"            => $qcld_article_text,
+        "model"             => 'dall-e-3',
+        "n"                 => 1,
+        "size"              => $img_size,
+        "response_format"   => "url",
+    ];
+    $data    = json_encode($request_body);
+    $url     = "https://api.openai.com/v1/images/generations";
+    $apt_key = "Authorization: Bearer ". $OPENAI_API_KEY;
+
+    $curl = curl_init($url);
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_POST, true);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $headers    = array(
+       "Content-Type: application/json",
+       $apt_key,
+    );
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+    $result     = curl_exec($curl);
+    curl_close($curl);
+
+    // we need to catch the error here
+    $imgresult = json_decode( $result );
+
+
+    $imgresult = isset($imgresult->data[0]->url) ? $imgresult->data[0]->url : '';
+
+    if( !empty($imgresult)){
+
+
+        $array              = explode('/', getimagesize($imgresult)['mime']);
+        $imagetype          = end($array);
+        //$uniq_name          = md5($imgresult);
+        $uniq_name 			= preg_replace( '%\s*[-_\s]+\s*%', ' ',  $qcld_article_text );
+        $uniq_name 			= str_replace( ' ', '-',  $uniq_name );
+        $uniq_name 			= strtolower( $uniq_name );
+        $uniq_name 			= preg_replace('/[^a-zA-Z0-9_ -]/s', '',$uniq_name);
+        $filename           = $uniq_name .'-'. uniqid() . '.' . $imagetype;
+
+        $uploaddir          = wp_upload_dir();
+        $target_file_name   = $uploaddir['path'] . '/' . $filename;
+
+        $contents           = file_get_contents( $imgresult );
+        $savefile           = fopen($target_file_name, 'w');
+        fwrite($savefile, $contents);
+        fclose($savefile);
+
+        /* add the image title */
+        $image_title        = ucwords( $uniq_name );
+
+        $qcld_seo_openai_images_attribution = 'gpt openai';
+
+        /* add the caption */
+        $attachment_caption = '';
+        if (! isset($qcld_seo_openai_images_attribution['attribution']) | isset($qcld_seo_openai_images_attribution['attribution']) == 'true')
+            $attachment_caption = esc_attr( $image_title );
+
+        unset($imgresult);
+
+        /* insert the attachment */
+        $wp_filetype = wp_check_filetype(basename($target_file_name), null);
+        $attachment  = array(
+            'guid'              => $uploaddir['url'] . '/' . basename($target_file_name),
+            'post_mime_type'    => $wp_filetype['type'],
+            'post_title'        => $image_title,
+            'post_status'       => 'inherit'
+        );
+        $post_id     = isset($_REQUEST['post_id']) ? absint($_REQUEST['post_id']): '';
+        $attach_id   = wp_insert_attachment($attachment, $target_file_name, $post_id);
+        if ($attach_id == 0)
+            die('Error: File attachment error');
+
+        $attach_data = wp_generate_attachment_metadata($attach_id, $target_file_name);
+        $result      = wp_update_attachment_metadata($attach_id, $attach_data);
+
+        $image_data                 = array();
+        $image_data['ID']           = $attach_id;
+        $image_data['post_excerpt'] = $attachment_caption;
+        wp_update_post($image_data);
+
+        $parsed = wp_get_attachment_image_src( $attach_id, 'full' )[0];
+
+        if(!empty($parsed)){
+            $attach_id = $parsed;
+        }
+
+
+
+        $imgresult = $attach_id;
+    }
+
+    return $imgresult;
+    
+}
+}

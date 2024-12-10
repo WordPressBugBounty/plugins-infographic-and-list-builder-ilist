@@ -4,7 +4,7 @@ Donate link: http://www.quantumcloud.com
 Tags: AI, infographic, charts, listicle, openai
 Requires at least: 4.9
 Tested up to: 6.7
-Stable tag: 4.8.2
+Stable tag: 4.8.4
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.quantumcloud.com
@@ -199,6 +199,9 @@ Go to https://www.quantumcloud.com/products/infographic-maker-ilist/ if you have
 
 
 == Changelog ==
+
+= 4.8.4 =
+# End sale
 
 = 4.8.2 =
 # AI Writing panel
