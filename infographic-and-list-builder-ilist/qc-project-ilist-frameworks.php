@@ -99,7 +99,7 @@ if(!function_exists('qc_ilist_settings_page_callback_func')){
                   <br />
                   <strong><?php echo esc_html( 'Choose a template. Add a simple Chart if you want to.' , 'iList' ); ?></strong></p>
               </div>
-              <div class="PortfolioX-img"><img src="<?php echo esc_url( QCOPD_IMG_URL1 ); ?>/step1.jpg" alt=""></div>
+              <div class="PortfolioX-img"><img src="<?php echo esc_url( QCOPD_iList_IMG_URL1 ); ?>/step1.jpg" alt=""></div>
             </div>
             <div class="PortfolioX-section">
               <div class="service-count"><?php echo esc_html( 'Step 2' , 'iList' ); ?></div>
@@ -109,7 +109,7 @@ if(!function_exists('qc_ilist_settings_page_callback_func')){
                   <br />
                   <strong><?php echo esc_html( 'Save the iList and Publish.' , 'iList' ); ?></strong> </p>
               </div>
-              <div class="PortfolioX-img"><img src="<?php echo esc_url( QCOPD_IMG_URL1 ); ?>/step2.jpg" alt=""></div>
+              <div class="PortfolioX-img"><img src="<?php echo esc_url( QCOPD_iList_IMG_URL1 ); ?>/step2.jpg" alt=""></div>
             </div>
             <div class="PortfolioX-section">
               <div class="service-count"><?php echo esc_html( 'Step 3' , 'iList' ); ?></div>
@@ -119,7 +119,7 @@ if(!function_exists('qc_ilist_settings_page_callback_func')){
                 <br />
                 <p style="color:#FF0004;"><?php echo esc_html( 'NB: iLists must be published before you add the shortcode to a page. iLists won\'t display on your page if it is in Draft mode. Don\'t worry, your iLists won\'t show until you add the shortcode to a page or post.' , 'iList' ); ?> </p>
               </div>
-              <div class="PortfolioX-img"><img src="<?php echo esc_url( QCOPD_IMG_URL1 ); ?>/step4.jpg" alt=""></div>
+              <div class="PortfolioX-img"><img src="<?php echo esc_url( QCOPD_iList_IMG_URL1 ); ?>/step4.jpg" alt=""></div>
             </div>
             
             
@@ -234,7 +234,7 @@ if(!function_exists('qc_ilist_settings_page_callback_func')){
           <tr valign="top">
             <th scope="row"><?php echo esc_html( 'Help' , 'iList' ); ?></th>
             <td><div>
-                <h1><?php echo esc_html( 'Welcome to the Infographic Maker - iList! You are' , 'iList' ); ?> <strong><?php echo esc_html( 'awesome' , 'iList' ); ?></strong>, <?php echo esc_html( 'by the way' , 'iList' ); ?> <img draggable="false" class="emoji" alt="🙂" src="<?php echo esc_url( QCOPD_IMG_URL1 ); ?>/1f642.svg"></h1>
+                <h1><?php echo esc_html( 'Welcome to the Infographic Maker - iList! You are' , 'iList' ); ?> <strong><?php echo esc_html( 'awesome' , 'iList' ); ?></strong>, <?php echo esc_html( 'by the way' , 'iList' ); ?> <img draggable="false" class="emoji" alt="🙂" src="<?php echo esc_url( QCOPD_iList_IMG_URL1 ); ?>/1f642.svg"></h1>
                 <h3><?php echo esc_html( 'Getting Started' , 'iList' ); ?></h3>
                 <p><?php echo esc_html( 'In principle, an infographic is a List created with three building blocks – Texts, Images and Charts laid out in a visually impressive manner to convey a specific idea that anyone can easily grasp. iList lets you make Lists with Images, Texts, and Charts (pro feature).' , 'iList' ); ?> </p>
                 <p><?php echo esc_html( 'With that in mind you should start with the following simple steps.' , 'iList' ); ?></p>
@@ -251,15 +251,15 @@ if(!function_exists('qc_ilist_settings_page_callback_func')){
                 <br>
                 <p style="color:red"><b><?php echo esc_html( 'NB:' , 'iList' ); ?></b> <?php echo esc_html( 'iLists must be published before you add the shortcode to a page. iLists won\'t display on your page if it is in Draft mode. Don\'t worry, your iLists won\'t show until you add the shortcode to a page or post.' , 'iList' ); ?></p>
                 <br>
-                <p><?php echo esc_html( 'That’s it! The above steps are for the basic usages. There are a lot of advanced options and tons more templates available with the' , 'iList' ); ?> <a href="https://www.quantumcloud.com/products/infographic-maker-ilist/" target="_blank"><?php echo esc_html( 'Professional version' , 'iList' ); ?></a> <?php echo esc_html( 'if you ever feel the need. If you had any specific questions about how something works, do not hesitate to contact us from the' , 'iList' ); ?> <a href="<?php echo get_site_url().'/wp-admin/edit.php?post_type=ilist&page=qcpro-promo-page-ilist-free-page-123za'; ?>"><?php echo esc_html( 'Support Page' , 'iList' ); ?></a>. <img draggable="false" class="emoji" alt="🙂" src="<?php echo esc_url( QCOPD_IMG_URL1 ); ?>/1f642.svg"></p>
+                <p><?php echo esc_html( 'That’s it! The above steps are for the basic usages. There are a lot of advanced options and tons more templates available with the' , 'iList' ); ?> <a href="https://www.quantumcloud.com/products/infographic-maker-ilist/" target="_blank"><?php echo esc_html( 'Professional version' , 'iList' ); ?></a> <?php echo esc_html( 'if you ever feel the need. If you had any specific questions about how something works, do not hesitate to contact us from the' , 'iList' ); ?> <a href="<?php echo get_site_url().'/wp-admin/edit.php?post_type=ilist&page=qcpro-promo-page-ilist-free-page-123za'; ?>"><?php echo esc_html( 'Support Page' , 'iList' ); ?></a>. <img draggable="false" class="emoji" alt="🙂" src="<?php echo esc_url( QCOPD_iList_IMG_URL1 ); ?>/1f642.svg"></p>
                 <p><strong><a href="<?php echo esc_url( 'https://www.quantumcloud.com/resources/make-infographics-ilist/' , 'iList' ); ?>" target="_blank"><?php echo esc_html( 'Check' , 'iList' ); ?></a> <?php echo esc_html( 'This Article we Created for the Pro Version for More Details with Images and Screenshots' , 'iList' ); ?></strong></p>
                 <h3><?php echo esc_html( 'Shortcode Generator' , 'iList' ); ?></h3>
                 <p> <?php echo esc_html( 'We encourage you to use the ShortCode generator found in the toolbar of your page/post editor in visual mode.' , 'iList' ); ?></p>
-                <img src="<?php echo esc_url( QCOPD_IMG_URL1 ); ?>/classic.jpg" alt="shortcode generator" />
+                <img src="<?php echo esc_url( QCOPD_iList_IMG_URL1 ); ?>/classic.jpg" alt="shortcode generator" />
                 <p><?php echo esc_html( 'See sample below for where to find it for Gutenberg.' , 'iList' ); ?></p>
-                <img src="<?php echo esc_url( QCOPD_IMG_URL1 ); ?>/gutenburg.jpg" alt="shortcode generator" /> <img src="<?php echo esc_url( QCOPD_IMG_URL1 ); ?>/gutenburg2.jpg" alt="shortcode generator" />
+                <img src="<?php echo esc_url( QCOPD_iList_IMG_URL1 ); ?>/gutenburg.jpg" alt="shortcode generator" /> <img src="<?php echo esc_url( QCOPD_iList_IMG_URL1 ); ?>/gutenburg2.jpg" alt="shortcode generator" />
                 <p><?php echo esc_html( 'This is how the shortcode generator will look like.' , 'iList' ); ?></p>
-                <img src="<?php echo esc_url( QCOPD_IMG_URL1 ); ?>/shortcode-generator1.jpg" alt="shortcode generator" /> 
+                <img src="<?php echo esc_url( QCOPD_iList_IMG_URL1 ); ?>/shortcode-generator1.jpg" alt="shortcode generator" /> 
                 
                 
                 <h3><?php echo esc_html( 'Shortcode Example' , 'iList' ); ?></h3>

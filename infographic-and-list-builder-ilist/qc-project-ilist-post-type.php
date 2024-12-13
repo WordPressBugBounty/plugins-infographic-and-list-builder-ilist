@@ -72,15 +72,15 @@ add_action('init', 'qcilist_custom_post_text');
 
 if(function_exists('is_plugin_active')){
 	if(!is_plugin_active('CMB2/init.php')){
-		require_once QCOPD_INC_DIR1 . '/CMB2/init.php';
+		require_once QCOPD_iList_INC_DIR1 . '/CMB2/init.php';
 	}
 }else{
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	if(!is_plugin_active('CMB2/init.php')){
-		require_once QCOPD_INC_DIR1 . '/CMB2/init.php';
+		require_once QCOPD_iList_INC_DIR1 . '/CMB2/init.php';
 	}
 }
-require_once( QCOPD_INC_DIR1 . '/CMB2/cmb2-conditionals.php' );
+require_once( QCOPD_iList_INC_DIR1 . '/CMB2/cmb2-conditionals.php' );
 
 
 //<--Registering repeatable group field metabox.
@@ -429,7 +429,7 @@ add_action ('init', 'qcilist_tinymce_button_function');
 if(!function_exists('qcilist_get_file_path')){
 	function qcilist_get_file_path(){
 	?>
-	<div id="ilist_path" data-path="<?php echo QCOPD_ASSETS_URL1; ?>"></div>
+	<div id="ilist_path" data-path="<?php echo QCOPD_iList_ASSETS_URL1; ?>"></div>
 	<?php
 	}
 }

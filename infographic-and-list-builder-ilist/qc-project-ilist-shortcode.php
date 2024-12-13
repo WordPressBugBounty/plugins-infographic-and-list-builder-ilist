@@ -2,11 +2,11 @@
 defined('ABSPATH') or die("No direct script access!");
 
 if ( ! defined( 'OCOPD_TPL_DIR1' ) ) {
-	define('OCOPD_TPL_DIR1', QCOPD_DIR1 . "/views");
+	define('OCOPD_TPL_DIR1', QCOPD_iList_DIR1 . "/views");
 }
 
 if ( ! defined( 'OCOPD_TPL_URL1' ) ) {
-	define('OCOPD_TPL_URL1', QCOPD_URL1 . "/views");
+	define('OCOPD_TPL_URL1', QCOPD_iList_URL1 . "/views");
 }
 
 //Shortcode area
@@ -139,7 +139,7 @@ function qcilist_textlist_full_shortcode( $atts = array() ){
 					
 					echo '<div id="iList-outer-wrapper"  class="iList-outer-wrapper">';
 
-					wp_enqueue_script( 'ilist-chart-jssss', QCOPD_ASSETS_URL1 . '/js/Chart.js');
+					wp_enqueue_script( 'ilist-chart-jssss', QCOPD_iList_ASSETS_URL1 . '/js/Chart.js');
 				}
 
 					require ( OCOPD_TPL_DIR1 . "/$template_code/template.php" );

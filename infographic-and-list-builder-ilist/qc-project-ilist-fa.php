@@ -6,7 +6,7 @@ function ilist_modal_fa() {
 	
 	$data = file(plugin_dir_path( __FILE__ ).'assets/data/fa-data.txt');//file in to an array
 	
-	//$data = file_get_contents( QCOPD_ASSETS_URL1 . '/data/fa-data.txt' );
+	//$data = file_get_contents( QCOPD_iList_ASSETS_URL1 . '/data/fa-data.txt' );
 	
 	//$data = explode("\n",$data);
 	$icons = array();

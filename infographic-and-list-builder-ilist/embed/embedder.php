@@ -7,10 +7,10 @@ add_action('wp_enqueue_scripts', 'qcld_load_embed_scripts');
 function qcld_load_embed_scripts()
 {
     //FontAwesome
-    wp_enqueue_style('ilist-embed-form-css', QCOPD_URL1 . '/embed/css/embed-form.css');
+    wp_enqueue_style('ilist-embed-form-css', QCOPD_iList_URL1 . '/embed/css/embed-form.css');
 
     //Scripts
-    wp_enqueue_script('ilist-embed-form-script', QCOPD_URL1 . '/embed/js/embed-form.js', array('jquery'));
+    wp_enqueue_script('ilist-embed-form-script', QCOPD_iList_URL1 . '/embed/js/embed-form.js', array('jquery'));
 
 }
 

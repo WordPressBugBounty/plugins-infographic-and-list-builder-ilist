@@ -1,8 +1,8 @@
 <?php 
 wp_enqueue_style( 'ilist_info1_stylesheet', OCOPD_TPL_URL1 . "/$template_code/css/style.css");
 wp_enqueue_style( 'ilist_info5_google_font2', "https://fonts.googleapis.com/css?family=Montserrat");
-wp_enqueue_style( 'ilist_infog5_light_css', QCOPD_ASSETS_URL1 . "/css/lightbox.min.css");
-wp_enqueue_script( 'ilist_infog5_light', QCOPD_ASSETS_URL1 . "/js/lightbox-plus-jquery.min.js", array('jquery'));
+wp_enqueue_style( 'ilist_infog5_light_css', QCOPD_iList_ASSETS_URL1 . "/css/lightbox.min.css");
+wp_enqueue_script( 'ilist_infog5_light', QCOPD_iList_ASSETS_URL1 . "/js/lightbox-plus-jquery.min.js", array('jquery'));
 ?>
 <?php 
 if($column>8){

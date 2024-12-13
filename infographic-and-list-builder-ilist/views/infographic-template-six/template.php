@@ -1,7 +1,7 @@
 <?php 
 wp_enqueue_style( 'ilist_info6_stylesheet', OCOPD_TPL_URL1 . "/$template_code/css/style.css");
-wp_enqueue_style( 'ilist_img5_light_css', QCOPD_ASSETS_URL1 . "/css/lightbox.min.css");
-wp_enqueue_script( 'ilist_img5_light', QCOPD_ASSETS_URL1 . "/js/lightbox-plus-jquery.min.js", array('jquery'));
+wp_enqueue_style( 'ilist_img5_light_css', QCOPD_iList_ASSETS_URL1 . "/css/lightbox.min.css");
+wp_enqueue_script( 'ilist_img5_light', QCOPD_iList_ASSETS_URL1 . "/js/lightbox-plus-jquery.min.js", array('jquery'));
 wp_enqueue_style( 'ilist_info6_google_font', "https://fonts.googleapis.com/css?family=Oswald");
 ?>
 <?php

@@ -3,7 +3,7 @@
 * Plugin Name: Infographic Maker iList
 * Plugin URI: https://wordpress.org/plugins/infographic-and-list-builder-iList
 * Description: Infographics & elegant Lists with charts and graphs. Build HTML, Responsive infographics & elegant Text or Image Lists quickly.
-* Version: 4.8.4
+* Version: 4.8.5
 * Author: QuantumCloud
 * Author URI: https://www.quantumcloud.com/
 * Requires at least: 4.6
@@ -17,32 +17,32 @@
 defined('ABSPATH') or die("No direct script access!");
  
 //Custom Constants
-if ( ! defined( 'QCOPD_URL1' ) ) {
-    define('QCOPD_URL1', plugin_dir_url(__FILE__));
+if ( ! defined( 'QCOPD_iList_URL1' ) ) {
+    define('QCOPD_iList_URL1', plugin_dir_url(__FILE__));
 }
 
-if ( ! defined( 'QCOPD_IMG_URL1' ) ) {
-    define('QCOPD_IMG_URL1', QCOPD_URL1 . "/assets/images");
+if ( ! defined( 'QCOPD_iList_IMG_URL1' ) ) {
+    define('QCOPD_iList_IMG_URL1', QCOPD_iList_URL1 . "/assets/images");
 }
 
-if ( ! defined( 'QCOPD_ASSETS_URL1' ) ) {
-    define('QCOPD_ASSETS_URL1', QCOPD_URL1 . "/assets");
+if ( ! defined( 'QCOPD_iList_ASSETS_URL1' ) ) {
+    define('QCOPD_iList_ASSETS_URL1', QCOPD_iList_URL1 . "/assets");
 }
 
-if ( ! defined( 'QCOPD_DIR1' ) ) {
-    define('QCOPD_DIR1', dirname(__FILE__));
+if ( ! defined( 'QCOPD_iList_DIR1' ) ) {
+    define('QCOPD_iList_DIR1', dirname(__FILE__));
 }
 
-if ( ! defined( 'QCOPD_INC_DIR1' ) ) {
-    define('QCOPD_INC_DIR1', QCOPD_DIR1 . "/inc");
+if ( ! defined( 'QCOPD_iList_INC_DIR1' ) ) {
+    define('QCOPD_iList_INC_DIR1', QCOPD_iList_DIR1 . "/inc");
 }
 
-if ( ! defined( 'QCOPD_DIR' ) ) {
-    define('QCOPD_DIR', dirname(__FILE__));
+if ( ! defined( 'QCOPD_iList_DIR' ) ) {
+    define('QCOPD_iList_DIR', dirname(__FILE__));
 }
 
 if ( ! defined( 'QCOPD_INC_URL_INC' ) ) {
-    define('QCOPD_INC_URL_INC', QCOPD_URL1 . "/inc");
+    define('QCOPD_INC_URL_INC', QCOPD_iList_URL1 . "/inc");
 }
 
 /**
@@ -69,9 +69,9 @@ require_once('qc-support-promo-page/class-qc-support-promo-page.php');
 require_once('class-qc-free-plugin-upgrade-notice.php');
 
 
-require_once( QCOPD_DIR . '/inc/inc/parsedown.php' );
-require_once( QCOPD_DIR . '/inc/inc/qcld-floating-openai-style-filter.php' );
-require_once( QCOPD_DIR . '/inc/inc/qcld_openai_floating_content.php' );
+require_once( QCOPD_iList_DIR . '/inc/inc/parsedown.php' );
+require_once( QCOPD_iList_DIR . '/inc/inc/qcld-floating-openai-style-filter.php' );
+require_once( QCOPD_iList_DIR . '/inc/inc/qcld_openai_floating_content.php' );
 
 if(!function_exists('qcld_ilist_order_index_catalog_menu_page')){
     function qcld_ilist_order_index_catalog_menu_page( $menu_ord ){
@@ -166,7 +166,7 @@ if(!function_exists('ilist_options_instructions_example')){
     				
                 </div>
                 <?php 
-                wp_enqueue_script( 'jq-slick.min-js', QCOPD_ASSETS_URL1 . '/js/slick.min.js', array('jquery'));
+                wp_enqueue_script( 'jq-slick.min-js', QCOPD_iList_ASSETS_URL1 . '/js/slick.min.js', array('jquery'));
 
                 $notice_js = "jQuery(document).ready(function($){
 
@@ -302,7 +302,7 @@ if(!function_exists('qcopd_ilist_pro_notice')){
                 printf(
                     __('%s  %s  %s', 'dna88-wp-notice'),
                     '<a href="'.esc_url('https://www.quantumcloud.com/products/infographic-maker-ilist/').'" target="_blank">',
-                    '<img src="'.esc_url(QCOPD_IMG_URL1).'/blackfriday24-ilist.jpg" >',
+                    '<img src="'.esc_url(QCOPD_iList_IMG_URL1).'/blackfriday24-ilist.jpg" >',
                     '</a>'
                 );
             ?>

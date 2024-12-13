@@ -111,6 +111,10 @@ jQuery(document).on('click', ".js-modal-close, .modal-overlay", function(event){
         var i_width = $("#igwidth").val();
         var selected_value = $(".iframe-main-select option:selected").text();
 		var extn = '';
+
+        var ctitle = $(".js-open-modal").data("ctitle");
+        var clink = $(".js-open-modal").data("clink");
+        
 		if(selected_value.match(/px/g)){
 			extn='px';
 		}
