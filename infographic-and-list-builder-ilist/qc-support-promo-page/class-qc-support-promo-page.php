@@ -20,8 +20,8 @@ function qcilist_show_promo_page_callback_func(){
 
     add_submenu_page(
         "edit.php?post_type=ilist",
-        esc_html__('More WordPress Goodies for You!'),
-        esc_html__('Support'),
+        esc_html('More WordPress Goodies for You!', 'iList'),
+        esc_html('Support', 'iList'),
         'manage_options',
         "qcopd_ilist_supports",
         'qcilist_promo_support_page_callback_func'
@@ -79,11 +79,11 @@ if ( ! function_exists( 'qcilist_promo_support_page_callback_func' ) ) {
         <div class="qcilist-support qcld-support-new-page">
             <div class="support-btn-main justify-content-center">
                 <div class="col text-center">
-                    <h2 class="py-3"><?php esc_html_e('Check Out Some of Our Other Works that Might Make Your Website Better', 'qc-clr'); ?></h2>
-                    <h5><?php esc_html_e('All our Pro Version users get Premium, Guaranteed Quick, One on One Priority Support.', 'qc-clr'); ?></h5>
+                    <h2 class="py-3"><?php esc_html_e('Check Out Some of Our Other Works that Might Make Your Website Better', 'iList'); ?></h2>
+                    <h5><?php esc_html_e('All our Pro Version users get Premium, Guaranteed Quick, One on One Priority Support.', 'iList'); ?></h5>
                     <div class="support-btn">
-                        <a class="premium-support" href="<?php echo esc_url('https://qc.ticksy.com/'); ?>" target="_blank"><?php esc_html_e('Get Priority Support ', 'qc-clr'); ?></a>
-                        <a style="width:282px" class="premium-support" href="<?php echo esc_url('https://www.quantumcloud.com/resources/kb-sections/comment-tools/'); ?>" target="_blank"><?php esc_html_e('Online KnowledgeBase', 'qc-clr'); ?></a>
+                        <a class="premium-support" href="<?php echo esc_url('https://qc.ticksy.com/'); ?>" target="_blank"><?php esc_html_e('Get Priority Support ', 'iList'); ?></a>
+                        <a style="width:282px" class="premium-support" href="<?php echo esc_url('https://www.quantumcloud.com/resources/kb-sections/comment-tools/'); ?>" target="_blank"><?php esc_html_e('Online KnowledgeBase', 'iList'); ?></a>
                     </div>
                 </div>
             
@@ -122,22 +122,22 @@ if( !function_exists('qcilist_process_qc_promo_form') ){
         check_ajax_referer( 'qc-clr', 'security');
         
         $data['status']   = 'failed';
-        $data['message']  = esc_html__('Problem in processing your form submission request! Apologies for the inconveniences.<br> 
-Please email to <span style="color:#22A0C9;font-weight:bold !important;font-size:14px "> quantumcloud@gmail.com </span> with any feedback. We will get back to you right away!', 'qc-clr');
+        $data['message']  = esc_html('Problem in processing your form submission request! Apologies for the inconveniences.<br> 
+Please email to <span style="color:#22A0C9;font-weight:bold !important;font-size:14px "> quantumcloud@gmail.com </span> with any feedback. We will get back to you right away!', 'iList');
 
-        $name         = isset($_POST['post_name']) ? trim(sanitize_text_field($_POST['post_name'])) : '';
-        $email        = isset($_POST['post_email']) ? trim(sanitize_email($_POST['post_email'])) : '';
-        $subject      = isset($_POST['post_subject']) ? trim(sanitize_text_field($_POST['post_subject'])) : '';
-        $message      = isset($_POST['post_message']) ? trim(sanitize_text_field($_POST['post_message'])) : '';
-        $plugin_name  = isset($_POST['post_plugin_name']) ? trim(sanitize_text_field($_POST['post_plugin_name'])) : '';
+        $name         = isset($_POST['post_name']) ? trim(sanitize_text_field(wp_unslash($_POST['post_name']))) : '';
+        $email        = isset($_POST['post_email']) ? trim(sanitize_email(wp_unslash($_POST['post_email']))) : '';
+        $subject      = isset($_POST['post_subject']) ? trim(sanitize_text_field(wp_unslash($_POST['post_subject']))) : '';
+        $message      = isset($_POST['post_message']) ? trim(sanitize_text_field(wp_unslash($_POST['post_message']))) : '';
+        $plugin_name  = isset($_POST['post_plugin_name']) ? trim(sanitize_text_field(wp_unslash($_POST['post_plugin_name']))) : '';
 
         if( $name == "" || $email == "" || $subject == "" || $message == "" )
         {
-            $data['message'] = esc_html('Please fill up all the requried form fields.', 'qc-clr');
+            $data['message'] = esc_html('Please fill up all the requried form fields.', 'iList');
         }
         else if ( filter_var($email, FILTER_VALIDATE_EMAIL) === false ) 
         {
-            $data['message'] = esc_html('Invalid email address.', 'qc-clr');
+            $data['message'] = esc_html('Invalid email address.', 'iList');
         }
         else
         {
@@ -146,24 +146,24 @@ Please email to <span style="color:#22A0C9;font-weight:bold !important;font-size
 
             $bodyContent = "";
                 
-            $bodyContent .= "<p><strong>".esc_html('Support Request Details:', 'qc-clr')."</strong></p><hr>";
+            $bodyContent .= "<p><strong>".esc_html('Support Request Details:', 'iList')."</strong></p><hr>";
 
-            $bodyContent .= "<p>".esc_html('Name', 'qc-clr')." : ".$name."</p>";
-            $bodyContent .= "<p>".esc_html('Email', 'qc-clr')." : ".$email."</p>";
-            $bodyContent .= "<p>".esc_html('Subject', 'qc-clr')." : ".$subject."</p>";
-            $bodyContent .= "<p>".esc_html('Message', 'qc-clr')." : ".$message."</p>";
+            $bodyContent .= "<p>".esc_html('Name', 'iList')." : ".$name."</p>";
+            $bodyContent .= "<p>".esc_html('Email', 'iList')." : ".$email."</p>";
+            $bodyContent .= "<p>".esc_html('Subject', 'iList')." : ".$subject."</p>";
+            $bodyContent .= "<p>".esc_html('Message', 'iList')." : ".$message."</p>";
 
-            $bodyContent .= "<p>".esc_html('Sent Via the Plugin', 'qc-clr')." : ".$plugin_name."</p>";
+            $bodyContent .= "<p>".esc_html('Sent Via the Plugin', 'iList')." : ".$plugin_name."</p>";
 
-            $bodyContent .="<p></p><p>".esc_html('Mail sent from:', 'qc-clr')." <strong>".get_bloginfo('name')."</strong>, ".esc_html('URL:', 'qc-clr')." [".get_bloginfo('url')."].</p>";
-            $bodyContent .="<p>".esc_html('Mail Generated on:', 'qc-clr')." " . date("F j, Y, g:i a") . "</p>";           
+            $bodyContent .="<p></p><p>".esc_html('Mail sent from:', 'iList')." <strong>".get_bloginfo('name')."</strong>, ".esc_html('URL:', 'iList')." [".get_bloginfo('url')."].</p>";
+            $bodyContent .="<p>".esc_html('Mail Generated on:', 'iList')." " . date("F j, Y, g:i a") . "</p>";           
             
             $toEmail = "quantumcloud@gmail.com"; //Receivers email address
             //$toEmail = "qc.kadir@gmail.com"; //Receivers email address
 
             //Extract Domain
             $url = get_site_url();
-            $url = parse_url($url);
+            $url = wp_parse_url($url);
             $domain = $url['host'];
             
 
@@ -173,17 +173,17 @@ Please email to <span style="color:#22A0C9;font-weight:bold !important;font-size
             $body = $bodyContent;
             $headers = array();
             $headers[] = 'Content-Type: text/html; charset=UTF-8';
-            $headers[] = 'From: '.esc_attr($name, 'qc-clr').' <'.esc_attr($fakeFromEmailAddress, 'qc-clr').'>';
-            $headers[] = 'Reply-To: '.esc_attr($name, 'qc-clr').' <'.esc_attr($email, 'qc-clr').'>';
+            $headers[] = 'From: '.esc_attr($name).' <'.esc_attr($fakeFromEmailAddress).'>';
+            $headers[] = 'Reply-To: '.esc_attr($name).' <'.esc_attr($email).'>';
 
-            $finalSubject = esc_html('From Plugin Support Page:', 'qc-clr')." " . esc_attr($subject, 'qc-clr');
+            $finalSubject = esc_html('From Plugin Support Page:', 'iList')." " . esc_attr($subject);
             
             $result = wp_mail( $to, $finalSubject, $body, $headers );
 
             if( $result )
             {
                 $data['status'] = 'success';
-                $data['message'] = esc_html__('Your email was sent successfully. Thanks!', 'qc-clr');
+                $data['message'] = esc_html('Your email was sent successfully. Thanks!', 'iList');
             }
 
         }
@@ -191,7 +191,7 @@ Please email to <span style="color:#22A0C9;font-weight:bold !important;font-size
         ob_clean();
 
         
-        echo json_encode($data);
+        echo wp_json_encode($data);
     
         die();
     }

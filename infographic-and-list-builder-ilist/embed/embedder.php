@@ -8,10 +8,41 @@ function qcld_load_embed_scripts()
 {
     //FontAwesome
     wp_enqueue_style('ilist-embed-form-css', QCOPD_iList_URL1 . '/embed/css/embed-form.css');
-
     //Scripts
     wp_enqueue_script('ilist-embed-form-script', QCOPD_iList_URL1 . '/embed/js/embed-form.js', array('jquery'));
 
+}
+
+
+if(!function_exists('qcilist_embed_load_all_scripts')){
+    function qcilist_embed_load_all_scripts(){
+        wp_enqueue_style( 'ilist_embed_fontawesome-css', QCOPD_iList_ASSETS_URL1 . '/css/font-awesome.css');
+        wp_enqueue_style( 'ilist_embed_custom-css', QCOPD_iList_ASSETS_URL1 . '/css/sl-directory-style.css');
+        wp_enqueue_style( 'ilist_embed_custom-rwd-css', QCOPD_iList_ASSETS_URL1 . '/css/sl-directory-style-rwd.css');
+        wp_enqueue_style( 'ilist_custom-rwd-embed', QCOPD_iList_URL1 . '/embed/css/embed-form.css');
+
+        // Scripts
+        wp_enqueue_script( 'jquery', 'jquery');
+        wp_enqueue_script( 'ilist_embed_grid-packery',    QCOPD_iList_ASSETS_URL1 . '/js/packery.pkgd.js', array('jquery'));
+        wp_enqueue_script( 'ilist_embed_custom-script', QCOPD_iList_ASSETS_URL1 . '/js/directory-script.js', array('jquery', 'ilist_embed_grid-packery'));
+        wp_enqueue_script( 'ilist_embed_custom-embed_form', QCOPD_iList_URL1 . '/embed/js/embed-form.js', array('jquery', 'ilist_embed_grid-packery'));
+
+        wp_add_inline_script( 'ilist_embed_custom-script', 
+            'var ajaxurl = "'.admin_url( 'admin-ajax.php', is_ssl() ? 'https' : 'http' ).'";
+            var qcld_ajax_nonce = "'.wp_create_nonce( 'qcld-ilist' ).'";
+            var qc_ilist_get_ajax_nonce = "'.wp_create_nonce( 'qc-opd' ).'";
+            ', 'before');
+
+        $css = '.button-link-ilist,
+                #wpadminbar,
+                .sld-add .sld-add-btn {
+                    display: none !important;
+                }';
+
+        wp_add_inline_style( 'ilist_embed_custom-css', $css );
+
+
+    }
 }
 
 
@@ -19,6 +50,8 @@ function qcld_load_embed_scripts()
 function qcld_load_embed_link_template($template)
 {
     if (is_page('embed-ilist')) {
+        add_action('wp_enqueue_scripts', 'qcilist_embed_load_all_scripts');
+
         return dirname(__FILE__) . '/qcld-embed-link.php';
     }
     return $template;
@@ -81,26 +114,26 @@ add_action('init', 'ilist_embedoption_track');
 function qcld1_custom_embedder($shortcodeAtts)
 {
     global $post;
-$credit_title = get_option('sl_embed_title');
-$credit_link = get_option('sl_embed_link');
+    $credit_title = get_option('sl_embed_title');
+    $credit_link = get_option('sl_embed_link');
 
-    $pagename = $post->post_name;
+    $pagename = isset($post->post_name) ? $post->post_name : '';
 
-    if ($pagename != 'embed-link') {
+    if ( isset($pagename) && ( $pagename != 'embed-link' ) ) {
         ?>
 
         <a style="float:right" class="button-link-ilist js-open-modal" href="#" data-modal-id="popup_ilist"
            data-url="<?php bloginfo('url'); ?>/embed-ilist"
-           data-order="<?php echo esc_html__($shortcodeAtts['order']); ?>"
-           data-mode="<?php echo esc_html__($shortcodeAtts['mode']); ?>"
-           data-column="<?php echo esc_html__($shortcodeAtts['column']); ?>"
-           data-style="<?php echo esc_html__($shortcodeAtts['style']); ?>"
+           data-order="<?php echo esc_attr($shortcodeAtts['order']); ?>"
+           data-mode="<?php echo esc_attr($shortcodeAtts['mode']); ?>"
+           data-column="<?php echo esc_attr($shortcodeAtts['column']); ?>"
+           data-style="<?php echo esc_attr($shortcodeAtts['style']); ?>"
            data-search="<?php   ?>"
-           data-category="<?php echo esc_html__($shortcodeAtts['category']); ?>"
-           data-listid="<?php echo esc_html__($shortcodeAtts['list_id']); ?>"
-           data-ctitle="<?php echo esc_html__($credit_title); ?>"
-           data-clink="<?php echo esc_html__($credit_link); ?>"
-           data-upvote="<?php echo esc_html__($shortcodeAtts['upvote']); ?>"> 
+           data-category="<?php echo esc_attr($shortcodeAtts['category']); ?>"
+           data-listid="<?php echo esc_attr($shortcodeAtts['list_id']); ?>"
+           data-ctitle="<?php echo esc_attr($credit_title); ?>"
+           data-clink="<?php echo esc_attr($credit_link); ?>"
+           data-upvote="<?php echo esc_attr($shortcodeAtts['upvote']); ?>"> 
 			<?php 
 				if(get_option('ilist_lan_share_list')!=''){
 					echo get_option('ilist_lan_share_list');
@@ -125,10 +158,8 @@ $credit_link = get_option('sl_embed_link');
                             <div class="ifram-sm" style="width: 70px;">
                                 <span>&nbsp;</span>
                                 <select name="igsizetype" class="iframe-main-select">
-									
-                                    <option value="%">%</option>
-									<option value="px">px<?php esc_html_e("px", 'iList'); ?></option>
-                                    
+                                    <option value="%"><?php esc_html_e("%", 'iList'); ?></option>
+									<option value="px"><?php esc_html_e("px", 'iList'); ?></option>
                                 </select>
                             </div>
                             <div class="ifram-sm">
@@ -137,8 +168,7 @@ $credit_link = get_option('sl_embed_link');
                             </div>
                             <div class="ifram-sm">
                                 <span>&nbsp;</span>
-                                <a class="btn icon icon-code" id="generate-igcode_ilist"
-                                   onclick=""><?php esc_html_e('Generate & Copy', 'iList'); ?></a>
+                                <a class="btn icon icon-code" id="generate-igcode_ilist" onclick=""><?php esc_html_e('Generate & Copy', 'iList'); ?></a>
                                 </select>
                             </div>
                         </div>

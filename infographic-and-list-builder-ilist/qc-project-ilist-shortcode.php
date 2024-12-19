@@ -148,7 +148,7 @@ function qcilist_textlist_full_shortcode( $atts = array() ){
 					echo '</div>';
 				}
 
-				wp_reset_query();
+				wp_reset_postdata();
 			}else{
 				//Template Not Exists.
 				echo esc_html('Oops! Template File Not Exists!', 'iList' );

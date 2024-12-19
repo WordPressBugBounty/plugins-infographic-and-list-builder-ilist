@@ -295,10 +295,10 @@ if( !function_exists('qcld_recommend_support_function_ajax') ){
                             $title = wp_kses( $plugin['name'], $qcld_chatplugintags );
 
                             // Remove any HTML from the description.
-                            $description = strip_tags( $plugin['short_description'] );
+                            $description = wp_strip_all_tags( $plugin['short_description'] );
                             $version     = wp_kses( $plugin['version'], $qcld_chatplugintags );
 
-                            $name = strip_tags( $title . ' ' . $version );
+                            $name = wp_strip_all_tags( $title . ' ' . $version );
 
                             $author = wp_kses( $plugin['author'], $qcld_chatplugintags );
                             if ( ! empty( $author ) ) {

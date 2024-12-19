@@ -4,7 +4,7 @@ Donate link: http://www.quantumcloud.com
 Tags: AI, infographic, charts, listicle, openai
 Requires at least: 4.9
 Tested up to: 6.7
-Stable tag: 4.8.5
+Stable tag: 4.8.7
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.quantumcloud.com
@@ -17,6 +17,7 @@ AI Infographic maker with charts and graphs. Make Listicles, HTML infographics q
 
 Infographics & elegant Lists are now easy to make with iList using OpenAI to generate contents. Create impressive Listicles quickly. iList is first of its kind WordPress plugin to create free AI Infographic from your WordPress backend. Use AI to generate the infographics for you!
 
+> 🚀 MERRY CHRISTMAS & HAPPY NEW YEAR! The SALE is ON. Use <strong>Coupon Code 2025</strong> for your GIFT on our website when you Grab the PRO version.
 > 🚀 <strong>Upgrade to [Inforgraphic Maker iList Pro Now](https://www.quantumcloud.com/products/infographic-maker-ilist/) now!</strong>
 > 🚀 [Support, Bug Report, Feature Requests](https://www.quantumcloud.com/resources/free-support/) | [Infographic Maker Pro Version with ChatGPT Demo](https://dev.quantumcloud.com/iList/) | 
 
@@ -198,6 +199,10 @@ Go to https://www.quantumcloud.com/products/infographic-maker-ilist/ if you have
 
 
 == Changelog ==
+
+= 4.8.7 =
+# Improved security
+# Christmas Sale
 
 = 4.8.5 =
 # Improved security

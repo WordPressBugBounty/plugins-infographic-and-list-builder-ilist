@@ -44,6 +44,12 @@ if(!function_exists('qcilist_load_all_scripts')){
     	wp_enqueue_script( 'ilist-chart-js',        QCOPD_iList_ASSETS_URL1 . '/js/Chart.js', array('jquery'));
         wp_enqueue_script( 'ilist_grid-packery',    QCOPD_iList_ASSETS_URL1 . '/js/packery.pkgd.js', array('jquery'));
         wp_enqueue_script( 'ilist_custom-script',   QCOPD_iList_ASSETS_URL1 . '/js/directory-script.js', array('jquery', 'ilist_grid-packery'));
+
+        wp_add_inline_script( 'ilist_custom-script', 
+            'var ajaxurl = "'.admin_url( 'admin-ajax.php', is_ssl() ? 'https' : 'http' ).'";
+            var qcld_ajax_nonce = "'.wp_create_nonce( 'qcld-ilist' ).'";
+            var qc_ilist_get_ajax_nonce = "'.wp_create_nonce( 'qc-opd' ).'";
+            ', 'before');
     	
         
     }

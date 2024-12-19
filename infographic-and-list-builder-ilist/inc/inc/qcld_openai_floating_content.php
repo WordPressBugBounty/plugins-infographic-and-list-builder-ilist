@@ -403,27 +403,27 @@ if ( ! function_exists( 'qcld_ilist_floating_openai_keyword_suggestion_content_c
         $ppenalty                           = get_option('sl_openai_presence_penalty');
         $fpenalty                           = get_option('sl_openai_frequency_penalty');
 
-        $qcld_ilist_article_text                  = isset($_POST['keyword'])                          ? sanitize_text_field( $_POST['keyword'] ) : '';
-        $keyword_number                     = isset( $_POST['keyword_number'] )                 ? sanitize_text_field( $_POST['keyword_number'] ) : '';
-        $qcld_ilist_article_language              = isset($_POST['qcld_ilist_article_language'])            ? sanitize_text_field( $_POST['qcld_ilist_article_language'] ) : '';
-        $qcld_ilist_article_number_of_heading     = isset($_POST['qcld_ilist_article_number_of_heading'])   ? sanitize_text_field( $_POST['qcld_ilist_article_number_of_heading'] ) : '';
-        $qcld_ilist_article_heading_tag           = isset($_POST['qcld_ilist_article_heading_tag'])         ? sanitize_text_field( $_POST['qcld_ilist_article_heading_tag'] ) : '';
-        $qcld_ilist_article_heading_style         = isset($_POST['qcld_ilist_article_heading_style'])       ? sanitize_text_field( $_POST['qcld_ilist_article_heading_style'] ) : '';
-        $qcld_ilist_article_heading_tone          = isset($_POST['qcld_ilist_article_heading_tone'])        ? sanitize_text_field( $_POST['qcld_ilist_article_heading_tone'] ) : '';
-        $qcld_ilist_article_heading_img           = isset($_POST['qcld_ilist_article_heading_img'])         ? sanitize_text_field( $_POST['qcld_ilist_article_heading_img'] ) : '';
-        $qcld_ilist_article_heading_tagline       = isset($_POST['qcld_ilist_article_heading_tagline'])     ? sanitize_text_field( $_POST['qcld_ilist_article_heading_tagline'] ) : '';
-        $qcld_ilist_article_heading_intro         = isset($_POST['qcld_ilist_article_heading_intro'])       ? sanitize_text_field( $_POST['qcld_ilist_article_heading_intro'] ) : '';
-        $qcld_ilist_article_heading_conclusion    = isset($_POST['qcld_ilist_article_heading_conclusion'])  ? sanitize_text_field( $_POST['qcld_ilist_article_heading_conclusion'] ) : '';
-        $qcld_ilist_article_label_anchor_text     = isset($_POST['qcld_ilist_article_label_anchor_text'])   ? sanitize_text_field( $_POST['qcld_ilist_article_label_anchor_text'] ) : '';
-        $qcld_ilist_article_target_url            = isset($_POST['qcld_ilist_article_target_url'])          ? sanitize_text_field( $_POST['qcld_ilist_article_target_url'] ) : '';
-        $qcld_ilist_article_target_label_cta      = isset($_POST['qcld_ilist_article_target_label_cta'])    ? sanitize_text_field( $_POST['qcld_ilist_article_target_label_cta'] ) : '';
-        $qcld_ilist_article_cta_pos               = isset($_POST['qcld_ilist_article_cta_pos'])             ? sanitize_text_field( $_POST['qcld_ilist_article_cta_pos'] ) : '';
-        $qcld_ilist_article_label_keywords        = isset($_POST['qcld_ilist_article_label_keywords'])      ? sanitize_text_field( $_POST['qcld_ilist_article_label_keywords'] ) : '';
-        $qcld_ilist_article_label_word_to_avoid   = isset($_POST['qcld_ilist_article_label_word_to_avoid']) ? sanitize_text_field( $_POST['qcld_ilist_article_label_word_to_avoid'] ) : '';
-        $qcld_ilist_article_label_keywords_bold   = isset($_POST['qcld_ilist_article_label_keywords_bold']) ? intval( $_POST['qcld_ilist_article_label_keywords_bold'] ) : '';
-        $qcld_ilist_article_heading_faq           = isset($_POST['qcld_ilist_article_heading_faq'])         ? intval( $_POST['qcld_ilist_article_heading_faq'] ) : '';
+        $qcld_ilist_article_text            = isset($_POST['keyword'])                          ? sanitize_text_field( wp_unslash($_POST['keyword'] ) ) : '';
+        $keyword_number                     = isset( $_POST['keyword_number'] )                 ? sanitize_text_field( wp_unslash($_POST['keyword_number'] ) ) : '';
+        $qcld_ilist_article_language              = isset($_POST['qcld_ilist_article_language'])            ? sanitize_text_field( wp_unslash($_POST['qcld_ilist_article_language'] ) ) : '';
+        $qcld_ilist_article_number_of_heading     = isset($_POST['qcld_ilist_article_number_of_heading'])   ? sanitize_text_field( wp_unslash($_POST['qcld_ilist_article_number_of_heading'] ) ) : '';
+        $qcld_ilist_article_heading_tag           = isset($_POST['qcld_ilist_article_heading_tag'])         ? sanitize_text_field( wp_unslash($_POST['qcld_ilist_article_heading_tag'] ) ) : '';
+        $qcld_ilist_article_heading_style         = isset($_POST['qcld_ilist_article_heading_style'])       ? sanitize_text_field( wp_unslash($_POST['qcld_ilist_article_heading_style'] ) ) : '';
+        $qcld_ilist_article_heading_tone          = isset($_POST['qcld_ilist_article_heading_tone'])        ? sanitize_text_field( wp_unslash($_POST['qcld_ilist_article_heading_tone'] ) ) : '';
+        $qcld_ilist_article_heading_img           = isset($_POST['qcld_ilist_article_heading_img'])         ? sanitize_text_field( wp_unslash($_POST['qcld_ilist_article_heading_img'] ) ) : '';
+        $qcld_ilist_article_heading_tagline       = isset($_POST['qcld_ilist_article_heading_tagline'])     ? sanitize_text_field( wp_unslash($_POST['qcld_ilist_article_heading_tagline'] ) ) : '';
+        $qcld_ilist_article_heading_intro         = isset($_POST['qcld_ilist_article_heading_intro'])       ? sanitize_text_field( wp_unslash($_POST['qcld_ilist_article_heading_intro'] ) ) : '';
+        $qcld_ilist_article_heading_conclusion    = isset($_POST['qcld_ilist_article_heading_conclusion'])  ? sanitize_text_field( wp_unslash($_POST['qcld_ilist_article_heading_conclusion'] ) ) : '';
+        $qcld_ilist_article_label_anchor_text     = isset($_POST['qcld_ilist_article_label_anchor_text'])   ? sanitize_text_field( wp_unslash($_POST['qcld_ilist_article_label_anchor_text'] ) ) : '';
+        $qcld_ilist_article_target_url            = isset($_POST['qcld_ilist_article_target_url'])          ? sanitize_text_field( wp_unslash($_POST['qcld_ilist_article_target_url'] ) ) : '';
+        $qcld_ilist_article_target_label_cta      = isset($_POST['qcld_ilist_article_target_label_cta'])    ? sanitize_text_field( wp_unslash($_POST['qcld_ilist_article_target_label_cta'] ) ) : '';
+        $qcld_ilist_article_cta_pos               = isset($_POST['qcld_ilist_article_cta_pos'])             ? sanitize_text_field( wp_unslash($_POST['qcld_ilist_article_cta_pos'] ) ) : '';
+        $qcld_ilist_article_label_keywords        = isset($_POST['qcld_ilist_article_label_keywords'])      ? sanitize_text_field( wp_unslash($_POST['qcld_ilist_article_label_keywords'] ) ) : '';
+        $qcld_ilist_article_label_word_to_avoid   = isset($_POST['qcld_ilist_article_label_word_to_avoid']) ? sanitize_text_field( wp_unslash($_POST['qcld_ilist_article_label_word_to_avoid'] ) ) : '';
+        $qcld_ilist_article_label_keywords_bold   = isset($_POST['qcld_ilist_article_label_keywords_bold']) ? intval( sanitize_text_field( wp_unslash($_POST['qcld_ilist_article_label_keywords_bold'] ) ) ) : '';
+        $qcld_ilist_article_heading_faq           = isset($_POST['qcld_ilist_article_heading_faq'])         ? intval( sanitize_text_field( wp_unslash($_POST['qcld_ilist_article_heading_faq'] ) ) ) : '';
 
-        $img_size                           = isset($_POST['qcld_ilist_article_img_size'])            ? sanitize_text_field( $_POST['qcld_ilist_article_img_size'] ) : '1024x1024';
+        $img_size                           = isset($_POST['qcld_ilist_article_img_size'])            ? sanitize_text_field( wp_unslash($_POST['qcld_ilist_article_img_size'] ) ) : '1024x1024';
         //$img_size = "512x512";
 
         if ( empty($qcld_ilist_article_language) ) {
@@ -1246,7 +1246,7 @@ if ( ! function_exists( 'qcld_ilist_floating_openai_keyword_suggestion_content_c
                 curl_setopt($ch, CURLOPT_URL, $url);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
                 curl_setopt($ch, CURLOPT_POST, 1);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post_fields));
+                curl_setopt($ch, CURLOPT_POSTFIELDS, wp_json_encode($post_fields));
                 curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
                 $result = curl_exec($ch);
                 if (curl_errno($ch)) {
@@ -1278,7 +1278,7 @@ if ( ! function_exists( 'qcld_ilist_floating_openai_keyword_suggestion_content_c
                     "top_p"             => 1,
                     "best_of"           => 1,
                 ];
-                $data    = json_encode($request_body);
+                $data    = wp_json_encode($request_body);
                 $url     = "https://api.openai.com/v1/completions";
                 $apt_key = "Authorization: Bearer ". $OPENAI_API_KEY;
 
@@ -1431,7 +1431,7 @@ if ( ! function_exists( 'qcld_ilist_floating_openai_keyword_suggestion_content_c
                     curl_setopt($ch, CURLOPT_URL, $url);
                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
                     curl_setopt($ch, CURLOPT_POST, 1);
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post_fields));
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, wp_json_encode($post_fields));
                     curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
                     $result = curl_exec($ch);
                     if (curl_errno($ch)) {
@@ -1483,7 +1483,7 @@ if ( ! function_exists( 'qcld_ilist_floating_openai_keyword_suggestion_content_c
                         "top_p"             => 1,
                         "best_of"           => 1,
                     ];
-                    $data    = json_encode($request_body);
+                    $data    = wp_json_encode($request_body);
                     $url     = "https://api.openai.com/v1/completions";
                     $apt_key = "Authorization: Bearer ". $OPENAI_API_KEY;
 
@@ -1591,7 +1591,7 @@ if ( ! function_exists( 'qcld_ilist_floating_openai_save_draft_post_callback' ) 
         if ( isset( $_POST['title'] ) && !empty($_POST['title']) && isset( $_POST['content'] ) && !empty($_POST['content']) ) {
 
             $qcld_ilist_floating_allowed_html_content_post = wp_kses_allowed_html( 'post' );
-            $qcld_ilist_floating_title     = sanitize_text_field( $_POST['title'] );
+            $qcld_ilist_floating_title     = sanitize_text_field( wp_unslash( $_POST['title'] ) );
             $qcld_ilist_floating_content   = wp_kses( $_POST['content'], $qcld_ilist_floating_allowed_html_content_post );
             $qcld_ilist_floating_post_id   = wp_insert_post( array(
                 'post_title'    => $qcld_ilist_floating_title,
@@ -1719,7 +1719,7 @@ if ( ! function_exists( 'qcld_ilist_floating_openai_keyword_rewrite_article_call
                     curl_setopt($ch, CURLOPT_URL, $url);
                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
                     curl_setopt($ch, CURLOPT_POST, 1);
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post_fields));
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, wp_json_encode($post_fields));
                     curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
                     $result = curl_exec($ch);
                     if (curl_errno($ch)) {
@@ -1744,7 +1744,7 @@ if ( ! function_exists( 'qcld_ilist_floating_openai_keyword_rewrite_article_call
                         "presence_penalty"  => (float)$ppenalty,
                         "frequency_penalty" => (float)$fpenalty,
                     ];
-                    $data    = json_encode($request_body);
+                    $data    = wp_json_encode($request_body);
                     $url     = "https://api.openai.com/v1/completions";
                     $apt_key = "Authorization: Bearer ". $OPENAI_API_KEY;
 
@@ -1795,7 +1795,7 @@ if ( ! function_exists( 'qcld_ilist_floating_openai_qcld_ilist_content_generator
         );
 
         if(isset($_REQUEST['title']) && !empty($_REQUEST['title'])) {
-            $qcld_ilist_floating_prompt = sanitize_text_field($_REQUEST['title']);
+            $qcld_ilist_floating_prompt = sanitize_text_field(wp_unslash($_REQUEST['title']));
 
             $OPENAI_API_KEY = get_option('sl_openai_api_key');
             $ai_engines     = get_option('sl_openai_engines');
@@ -1829,7 +1829,7 @@ if ( ! function_exists( 'qcld_ilist_floating_openai_qcld_ilist_content_generator
                         curl_setopt($ch, CURLOPT_URL, $url);
                         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
                         curl_setopt($ch, CURLOPT_POST, 1);
-                        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post_fields));
+                        curl_setopt($ch, CURLOPT_POSTFIELDS, wp_json_encode($post_fields));
                         curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
                         $result = curl_exec($ch);
                         if (curl_errno($ch)) {
@@ -1872,7 +1872,7 @@ if ( ! function_exists( 'qcld_ilist_floating_openai_qcld_ilist_content_generator
                             "stream"            => true,
                         ];
                         
-                        $data    = json_encode($request_body);
+                        $data    = wp_json_encode($request_body);
                         $url     = "https://api.openai.com/v1/completions";
                         $apt_key = "Authorization: Bearer ". $OPENAI_API_KEY;
 

@@ -5656,8 +5656,13 @@ function qcld_ilist_floating_openai_article_heading_img_callback( $qcld_ilist_ar
 
         $array              = explode('/', getimagesize($imgresult)['mime']);
         $imagetype          = end($array);
-        $uniq_name          = md5($imgresult);
-        $filename           = $uniq_name . '.' . $imagetype;
+        //$uniq_name          = md5($imgresult);
+        //$filename           = $uniq_name . '.' . $imagetype;
+        $uniq_name          = preg_replace( '%\s*[-_\s]+\s*%', ' ',  $qcld_ilist_article_text );
+        $uniq_name          = str_replace( ' ', '-',  $uniq_name );
+        $uniq_name          = strtolower( $uniq_name );
+        $uniq_name          = preg_replace('/[^a-zA-Z0-9_ -]/s', '',$uniq_name);
+        $filename           = $uniq_name .'-'. uniqid() . '.' . $imagetype;
 
         $uploaddir          = wp_upload_dir();
         $target_file_name   = $uploaddir['path'] . '/' . $filename;
@@ -5675,7 +5680,7 @@ function qcld_ilist_floating_openai_article_heading_img_callback( $qcld_ilist_ar
         /* add the caption */
         $attachment_caption = '';
         if (! isset($qcld_ilist_floating_openai_images_attribution['attribution']) | isset($qcld_ilist_floating_openai_images_attribution['attribution']) == 'true')
-            $attachment_caption = '<a href="' . esc_url( $imgresult ) . '" target="_blank" rel="noopener">' . esc_attr( $filename ) . '</a>';
+            $attachment_caption = esc_attr( $image_title );
 
         unset($imgresult);
 

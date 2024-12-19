@@ -645,7 +645,7 @@ if(!function_exists('ilist_embaded_list_url_info')){
 
 		check_ajax_referer( 'qcld-ilist', 'security');
 
-	    $post_id  					= sanitize_text_field($_POST['post_id']);
+	    $post_id  					= isset($_POST['post_id']) ? sanitize_text_field(wp_unslash($_POST['post_id'])) : '';
 	    $shortcode_column 			= get_post_meta( $post_id, 'shortcode_column' );
 	    $shortcode_disable_lightbox = get_post_meta( $post_id, 'shortcode_disable_lightbox' );
 	    $shortcode_upvote 			= get_post_meta( $post_id, 'shortcode_upvote' );
@@ -654,12 +654,12 @@ if(!function_exists('ilist_embaded_list_url_info')){
 	    $shortcode_upvote 			= ( isset($shortcode_upvote[0]) && !empty( $shortcode_upvote[0] ) ) ? $shortcode_upvote[0] : '';
 	    $shortcode_disable_lightbox = ( isset($shortcode_disable_lightbox[0]) && !empty( $shortcode_disable_lightbox[0] ) ) ? $shortcode_disable_lightbox[0] : '';
 
-	    $embaded_url 				= site_url()."/embed-ilist/?order=ASC&mode=one&list_id=".esc_attr($post_id)."&column=".$shortcode_column."&upvote=".$shortcode_upvote."&capture=true";
+	    $embaded_url 				= site_url()."/embed-ilist/?order=ASC&mode=one&list_id=".esc_attr($post_id)."&column=".esc_attr($shortcode_column)."&upvote=".esc_attr($shortcode_upvote)."&capture=true";
 
-	    $shortcode_generate 		= '[qcld-ilist mode="one" list_id="'.esc_attr($post_id).'" column="'.$shortcode_column.'"  upvote="'.$shortcode_upvote.'" disable_lightbox="'.$shortcode_disable_lightbox.'" ]' .'<br>'. '<p> '.esc_html('You can also use the iList Shortcode Generator in your page for additional options.', 'iList' ).' </p>' ;
+	    $shortcode_generate 		= '[qcld-ilist mode="one" list_id="'.esc_attr($post_id).'" column="'.esc_attr($shortcode_column).'"  upvote="'.esc_attr($shortcode_upvote).'" disable_lightbox="'.esc_attr($shortcode_disable_lightbox).'" ]' .'<br>'. '<p> '.esc_html('You can also use the iList Shortcode Generator in your page for additional options.', 'iList' ).' </p>' ;
 
 
-	    wp_reset_query();
+	    wp_reset_postdata();
 	    $response = array(
 	        'html' 			=> $embaded_url,
 	        'short_code' 	=> $shortcode_generate,

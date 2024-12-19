@@ -1,17 +1,6 @@
 <?php
 defined('ABSPATH') or die("No direct script access!");
 
-add_action('wp_head', 'qcilist_ajax_ajaxurl');
-
-if(!function_exists('qcilist_ajax_ajaxurl')){
-	function qcilist_ajax_ajaxurl() {
-
-	   echo '<script type="text/javascript">
-	           	var ajaxurl = "' . admin_url('admin-ajax.php') . '";
-	         	var qc_ilist_get_ajax_nonce = "'.wp_create_nonce( 'qc-opd').'";
-	         </script>';
-	}
-}
 
 //Doing ajax action stuff
 if(!function_exists('ilist_upvote_ajax_action_stuff')){
@@ -20,17 +9,17 @@ if(!function_exists('ilist_upvote_ajax_action_stuff')){
 		check_ajax_referer( 'qc-opd', 'security');
 
 		//Get posted items
-		$action 	= isset($_POST['action']) 		? trim(sanitize_text_field($_POST['action'])) 		: '';
-		$post_id 	= isset($_POST['post_id']) 		? absint(sanitize_text_field($_POST['post_id'])) 	: '';
-		$meta_title = isset($_POST['meta_title']) 	? trim(sanitize_text_field($_POST['meta_title'])) 	: '';
-		$meta_link 	= isset($_POST['meta_link']) 	? trim(sanitize_text_field($_POST['meta_link'])) 	: '';
-		$meta_desc 	= isset($_POST['meta_desc']) 	? trim(sanitize_text_field($_POST['meta_desc'])) 	: '';
-		$li_id 		= isset($_POST['li_id']) 		? trim(sanitize_text_field($_POST['li_id'])) 		: '';
+		$action 	= isset($_POST['action']) 		? trim(sanitize_text_field(wp_unslash($_POST['action']))) 		: '';
+		$post_id 	= isset($_POST['post_id']) 		? absint(sanitize_text_field(wp_unslash($_POST['post_id']))) 	: '';
+		$meta_title = isset($_POST['meta_title']) 	? trim(sanitize_text_field(wp_unslash($_POST['meta_title']))) 	: '';
+		$meta_link 	= isset($_POST['meta_link']) 	? trim(sanitize_text_field(wp_unslash($_POST['meta_link']))) 	: '';
+		$meta_desc 	= isset($_POST['meta_desc']) 	? trim(sanitize_text_field(wp_unslash($_POST['meta_desc']))) 	: '';
+		$li_id 		= isset($_POST['li_id']) 		? trim(sanitize_text_field(wp_unslash($_POST['li_id']))) 		: '';
 		
 		//Check wpdb directly, for all matching meta items
 		global $wpdb;
 
-		$results = $wpdb->get_results( "SELECT * FROM $wpdb->postmeta WHERE post_id = $post_id AND meta_key = 'qcld_text_group'" );
+		$results = $wpdb->get_results( $wpdb->prepare("SELECT * FROM $wpdb->postmeta WHERE post_id = %d AND meta_key = 'qcld_text_group'", $post_id ) );
 
 		//Defaults
 		$votes = 0;
@@ -196,7 +185,7 @@ if(!function_exists('ilist_show_ilist_templates')){
 
 		check_ajax_referer( 'qcld-ilist', 'security');
 
-		$list_type = isset( $_POST['list_type'] ) ? sanitize_text_field(trim($_POST['list_type'])):'';
+		$list_type = isset( $_POST['list_type'] ) ? trim(sanitize_text_field(wp_unslash($_POST['list_type']))):'';
 		$dir = dirname(__FILE__).'/views';
 		$templatearray = array();
 
@@ -330,7 +319,7 @@ if(!function_exists('ilist_show_ilist_templates')){
 						<?php foreach($val as $k=>$v) : ?>
 							
 								<div class="ilist_list_elem" data="<?php echo esc_attr($k); ?>"  title="<?php echo esc_attr($k); ?>" >
-									<img style="width:150px" src="<?php echo plugins_url( 'screenshots/'.$k.'.jpg', __FILE__ ); ?>" />
+									<img style="width:150px" src="<?php echo plugins_url( 'screenshots/'.esc_attr($k).'.jpg', __FILE__ ); ?>" />
 								</div>
 							
 						<?php endforeach ?>
@@ -340,7 +329,7 @@ if(!function_exists('ilist_show_ilist_templates')){
 						<?php foreach($val as $k=>$v) : ?>
 							
 								<div class="ilist_list_elem_pro" data="<?php echo esc_attr($k); ?>"  title="<?php echo esc_attr($k); ?>">
-									<a href="<?php echo esc_url( 'https://www.quantumcloud.com/products/infographic-maker-ilist/', 'iList' ); ?>" target="_blank"><img style="width:150px" src="<?php echo plugins_url( 'alltemplate/'.$k.'/screenshot.jpg', __FILE__ ); ?>" />
+									<a href="<?php echo esc_url( 'https://www.quantumcloud.com/products/infographic-maker-ilist/', 'iList' ); ?>" target="_blank"><img style="width:150px" src="<?php echo plugins_url( 'alltemplate/'.esc_attr($k).'/screenshot.jpg', __FILE__ ); ?>" />
 								</div>
 							
 						<?php endforeach ?>
@@ -462,9 +451,9 @@ function qcld_openai_title_generate_desc() {
 	
 	set_time_limit(10000);
 
-    $title  		= isset( $_POST['title'] ) ? sanitize_text_field($_POST['title']) : '';
-    $number  		= isset( $_POST['number'] ) ? sanitize_text_field($_POST['number']) : '';
-    $post_id  		= isset( $_POST['post_id'] ) ? sanitize_text_field($_POST['post_id']) : '';
+    $title  		= isset( $_POST['title'] ) ? sanitize_text_field(wp_unslash($_POST['title'])) : '';
+    $number  		= isset( $_POST['number'] ) ? sanitize_text_field(wp_unslash($_POST['number'])) : '';
+    $post_id  		= isset( $_POST['post_id'] ) ? sanitize_text_field(wp_unslash($_POST['post_id'])) : '';
 
     $OPENAI_API_KEY = get_option('sl_openai_api_key');
     $ai_engines     = get_option('sl_openai_engines');
@@ -606,9 +595,8 @@ function qcld_openai_title_generate_desc() {
         global $wpdb;
 
 
-		$results = $wpdb->get_results( "SELECT * FROM $wpdb->postmeta WHERE post_id = $post_id AND meta_key = 'qcld_text_group'" );
+		$results = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->postmeta WHERE post_id = %d AND meta_key = 'qcld_text_group'", $post_id ) );
 		
-              
 
 		//If li-id not exists in the cookie, then prceed to vote
 
