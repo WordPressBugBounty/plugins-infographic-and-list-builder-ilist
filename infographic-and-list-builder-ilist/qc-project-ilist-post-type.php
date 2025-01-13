@@ -393,7 +393,7 @@ if(!function_exists('qcilist_list_text_columns_content')){
 	    }
 
 	    if ( $column_name == 'shortcode_text_col' ) {
-	        echo esc_attr('[qcld-ilist mode="one" list_id="'.esc_attr($post_ID).'"]');
+	        echo esc_attr('[qcld-ilist mode="one" list_id="'.esc_attr($post_ID).'"][/qcld-ilist]');
 	    }
 	}
 }
@@ -529,10 +529,10 @@ if(!function_exists('qcilist_shortcode_custom_meta_box_markup')){
 					    $shortcode_column = ( isset($shortcode_column[0]) && !empty( $shortcode_column[0] ) ) ? $shortcode_column[0] : '';
 					    $shortcode_disable_lightbox = ( isset($shortcode_disable_lightbox[0]) && !empty( $shortcode_disable_lightbox[0] ) ) ? $shortcode_disable_lightbox[0] : '';
 
-		            	$qcld_ilist_shortcode =  '[qcld-ilist mode="one" list_id="'.esc_attr($object->ID).'"  column="'.esc_attr( $shortcode_column ).'" upvote="'.esc_attr($shortcode_upvote[0]).'" disable_lightbox="'.esc_attr($shortcode_disable_lightbox).'"]  <br> <p> '.esc_html('You can also use the iList Shortcode Generator in your page for additional options.', 'iList' ).' </p>'; 
+		            	$qcld_ilist_shortcode =  '[qcld-ilist mode="one" list_id="'.esc_attr($object->ID).'"  column="'.esc_attr( $shortcode_column ).'" upvote="'.esc_attr($shortcode_upvote[0]).'" disable_lightbox="'.esc_attr($shortcode_disable_lightbox).'"][/qcld-ilist]  <br> <p> '.esc_html('You can also use the iList Shortcode Generator in your page for additional options.', 'iList' ).' </p>'; 
 						echo $qcld_ilist_shortcode;
 					elseif(isset($object->ID) && !empty($object->ID)):
-						$qcld_ilist_shortcode =  '[qcld-ilist mode="one" list_id="'.esc_attr($object->ID).'"  column="2" upvote="on" disable_lightbox="true"]  <br> <p> '.esc_html('You can also use the iList Shortcode Generator in your page for additional options.', 'iList' ).' </p>'; 
+						$qcld_ilist_shortcode =  '[qcld-ilist mode="one" list_id="'.esc_attr($object->ID).'"  column="2" upvote="on" disable_lightbox="true"][/qcld-ilist]  <br> <p> '.esc_html('You can also use the iList Shortcode Generator in your page for additional options.', 'iList' ).' </p>'; 
 						echo $qcld_ilist_shortcode;
 		            
 		        	endif; 
@@ -602,7 +602,7 @@ if(!function_exists('qcilist_custom_post_type_xhr')){
 	                    $.post(postURL, data, function(response){
 	                       
 	                    });
-	                    return false;
+	                    //return false;
 	                });
 	            });
 	        </script>";
@@ -656,7 +656,7 @@ if(!function_exists('ilist_embaded_list_url_info')){
 
 	    $embaded_url 				= site_url()."/embed-ilist/?order=ASC&mode=one&list_id=".esc_attr($post_id)."&column=".esc_attr($shortcode_column)."&upvote=".esc_attr($shortcode_upvote)."&capture=true";
 
-	    $shortcode_generate 		= '[qcld-ilist mode="one" list_id="'.esc_attr($post_id).'" column="'.esc_attr($shortcode_column).'"  upvote="'.esc_attr($shortcode_upvote).'" disable_lightbox="'.esc_attr($shortcode_disable_lightbox).'" ]' .'<br>'. '<p> '.esc_html('You can also use the iList Shortcode Generator in your page for additional options.', 'iList' ).' </p>' ;
+	    $shortcode_generate 		= '[qcld-ilist mode="one" list_id="'.esc_attr($post_id).'" column="'.esc_attr($shortcode_column).'"  upvote="'.esc_attr($shortcode_upvote).'" disable_lightbox="'.esc_attr($shortcode_disable_lightbox).'" ][/qcld-ilist]' .'<br>'. '<p> '.esc_html('You can also use the iList Shortcode Generator in your page for additional options.', 'iList' ).' </p>' ;
 
 
 	    wp_reset_postdata();

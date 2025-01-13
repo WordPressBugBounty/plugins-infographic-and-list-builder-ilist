@@ -81,7 +81,7 @@ jQuery(document).ready(function($)
 		if(stus==1){
 			alert('Please fill the form correctly!');
 		}else{
-			var shortcode = '[qcld-chart label="'+setlabel+'" value="'+setvalue+'" type="'+charttype+'" title="'+carttitle+'" datasetname="'+datasetname+'" backgroundcolor="'+backgroundcolor+'" bgcolor="'+bgcolor+'" bordercolor="'+bordercolor+'" pointerstyle="'+pointerstyle+'" linestyle="'+lstyle+'"]';
+			var shortcode = '[qcld-chart label="'+setlabel+'" value="'+setvalue+'" type="'+charttype+'" title="'+carttitle+'" datasetname="'+datasetname+'" backgroundcolor="'+backgroundcolor+'" bgcolor="'+bgcolor+'" bordercolor="'+bordercolor+'" pointerstyle="'+pointerstyle+'" linestyle="'+lstyle+'"][/qcld-chart]';
 		$('#ilist_chart').val(shortcode);
 		$('#ilist-chart-field-modal').hide();
 		}

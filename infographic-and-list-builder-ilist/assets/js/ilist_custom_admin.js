@@ -141,7 +141,7 @@ jQuery(document).ready(function($)
 			  shortcodedata +=' item_orderby="'+item_orderby+'"';
 		  }
 		  
-		shortcodedata +=']';
+		shortcodedata +='][/qcld-ilist]';
 		//tinyMCE.activeEditor.selection.setContent(shortcodedata);
 		// $('#ilist-modal').remove();
 		 
@@ -187,8 +187,13 @@ jQuery(document).ready(function($)
 	if(document.getElementsByClassName('cmb2-id-qcld-text-group')[0]){
 		document.getElementsByClassName('cmb2-id-qcld-text-group')[0].appendChild(iDiv);
 	}
+
+	//console.log('sdafasdfsadf')
 	
-	$(document).on( 'click', 'a.ilist-fancybox-show', function(event){		        	
+	//$(document).on( 'click', '.ilist-fancybox-show', function(event){
+	$(document).on( 'click', '.ilist-fancybox-show', function(){	
+
+		console.log( 'dafafsad')	        	
 
 		var post_id = $(this).attr('post-id');
 
@@ -200,7 +205,7 @@ jQuery(document).ready(function($)
             'security': qcld_ilist_ajax.qcld_ajax_nonce
         };
 
-         setTimeout(function(){
+        setTimeout(function(){
 
         jQuery.post(qcld_ilist_ajax.admin_url, data, function (response) {
 

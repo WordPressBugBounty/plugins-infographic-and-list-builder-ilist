@@ -263,7 +263,7 @@ if(!function_exists('qc_ilist_settings_page_callback_func')){
                 
                 
                 <h3><?php echo esc_html( 'Shortcode Example' , 'iList' ); ?></h3>
-                <p> <?php echo esc_attr( '[qcld-ilist mode="one" list_id="75"]' , 'iList' ); ?><br>
+                <p> <?php echo esc_attr( '[qcld-ilist mode="one" list_id="75"][/qcld-ilist]' , 'iList' ); ?><br>
                   <br>
                   <strong><u><?php echo esc_html( 'Available Parameters:' , 'iList' ); ?></u></strong> <br>
                 </p>

@@ -129,6 +129,7 @@ add_action( 'admin_footer', 'ilist_modal_chart');
 add_shortcode('qcld-chart', 'qcilist_textlist_full_shortcode_chart');
 if(!function_exists('qcilist_textlist_full_shortcode_chart')){
 	function qcilist_textlist_full_shortcode_chart($atts = array()){
+
 		extract( shortcode_atts(
 			array(
 				'label' 			=> 'january,February,March,April',
@@ -143,84 +144,88 @@ if(!function_exists('qcilist_textlist_full_shortcode_chart')){
 				'linestyle' 		=> ""
 			), $atts
 		));
+
 		$label = explode(',',$label);
 		$label = '"'.implode('","',$label).'"';
 		
-		
-		
 		$_ex = qc_sld_clean($title);
+
+		// ilist_custom-css
+
+		
 	?>
 
 		<canvas id="myChart<?php echo esc_attr($_ex); ?>" ></canvas>
 
-	<script>
-	jQuery(document).ready(function($){
+	<?php 
 
-		var ctx = document.getElementById("myChart<?php echo esc_attr($_ex); ?>");
+		$main_id_variable = "myChart".esc_attr($_ex);
+
+		$script_js = "jQuery(document).ready(function($){
+
+		var ctx = document.getElementById('".esc_attr($main_id_variable)."');
 
 		var myChart = new Chart(ctx, {
-		    type: "<?php echo esc_attr($type); ?>",
+		    type: '".esc_attr($type)."',
 		    data: {
-		        labels: [<?php echo ($label); ?>],
+		        labels: [".($label)."],
 		        datasets: [{
-		            label: '<?php echo esc_attr($datasetname); ?>',
-		            data: [<?php echo esc_attr($value); ?>],
-					<?php 
-					if($bgcolor!='' and $type!='line' and $type!='radar'){
-					?>
-					backgroundColor: [<?php echo esc_attr($bgcolor); ?>],
-					<?php
-					}else{
-					?>
-					backgroundColor: '<?php echo esc_attr($backgroundcolor); ?>',
-					<?php
-					}
-					?>
+		            label: '".esc_attr($datasetname)."',
+		            data: [".esc_attr($value)."],";
 					
-		            <?php 
-					if($bordercolor!=''){
-					?>
-					borderColor: '<?php echo esc_attr($bordercolor); ?>',
-					<?php
-					}
-					?>
-		            pointRadius: 8,
-					pointHoverRadius: 11,
-		            //borderWidth: 3,
-					<?php 
-					if($linestyle=='filled'){
-					?>
-					fill: true,
-					<?php
-					}elseif($linestyle=='stepped'){
-					?>
-					steppedLine: true,
-					fill: false,
-					<?php 
-					}elseif($linestyle=='dashed'){
-					?>
-					borderDash: [5, 5],
-					fill: false,
-					<?php
+					if($bgcolor!='' && $type !='line' && $type !='radar' ){
+					
+					$script_js .= "backgroundColor: [".esc_attr($bgcolor)."],";
+					
 					}else{
-					?>
-					fill: false,
-					<?php
+					
+					$script_js .= "backgroundColor: '".esc_attr($backgroundcolor)."',";
+					
 					}
-					?>
+					 
+					if($bordercolor!=''){
+					
+					$script_js .= "borderColor: '".esc_attr($bordercolor)."',";
+					
+					}
+					
+		           $script_js .= " pointRadius: 8,
+					pointHoverRadius: 11,";
+
+		
+					if($linestyle=='filled'){
+					
+					$script_js .= "fill: true,";
+					
+					}elseif($linestyle=='stepped'){
+					
+					$script_js .= "steppedLine: true,
+					fill: false,";
+					 
+					}elseif($linestyle=='dashed'){
+					
+					$script_js .= "borderDash: [5, 5],
+					fill: false,";
+					
+					}else{
+					
+					$script_js .= "fill: false,";
+					
+					}
+					
 
 					
-		        }]
+		       $script_js .= " }]
 		    },
 		    options: {
 				elements: {
 							point: {
-								pointStyle: '<?php echo esc_attr($pointerstyle); ?>'
+								pointStyle: '".esc_attr($pointerstyle)."'
 							}
 						},
 						title: {
 		                        display: true,
-		                        text: '<?php echo esc_attr($title); ?>'
+		                        text: '".esc_attr($title)."'
 		                    },
 				tooltips: {
 		                    mode: 'index',
@@ -239,8 +244,14 @@ if(!function_exists('qcilist_textlist_full_shortcode_chart')){
 		    }
 		});
 
-	});
-	</script>
+	});";
+
+		wp_enqueue_script( 'ilist-chart-js');
+		wp_add_inline_script( 'ilist-chart-js', $script_js );
+
+	?>
+
+
 	<?php
 		
 	}

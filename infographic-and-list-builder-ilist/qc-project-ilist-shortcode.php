@@ -139,7 +139,7 @@ function qcilist_textlist_full_shortcode( $atts = array() ){
 					
 					echo '<div id="iList-outer-wrapper"  class="iList-outer-wrapper">';
 
-					wp_enqueue_script( 'ilist-chart-jssss', QCOPD_iList_ASSETS_URL1 . '/js/Chart.js');
+					wp_register_script( 'ilist-chart-js', QCOPD_iList_ASSETS_URL1 . '/js/Chart.js');
 				}
 
 					require ( OCOPD_TPL_DIR1 . "/$template_code/template.php" );
@@ -158,23 +158,29 @@ function qcilist_textlist_full_shortcode( $atts = array() ){
 
 			$listId++;
 		}	//End While
-?>
-<script type="text/javascript">
-jQuery(document).ready(function($){
 
-	<?php if($disable_lightbox=="true"): ?>
-	$('a').each(function(e){
-		if(typeof $(this).attr('data-lightbox') != 'undefined'){
-			$(this).attr('href',"#");
-			$(this).removeAttr('data-lightbox');
-			$(this).addClass('sldclickdisable');
-			$(this).css('cursor','default');
-		}		
-	})
-	<?php endif; ?>
+		wp_enqueue_script( 'ilist_custom-script');
+
+		$script_js = "jQuery(document).ready(function($){";
+
+		 if($disable_lightbox=="true"): 
+
+			$script_js .= "$('a').each(function(e){";
+				$script_js .= "if(typeof $(this).attr('data-lightbox') != 'undefined'){";
+					$script_js .= "$(this).attr('href', '#');";
+					$script_js .= "$(this).removeAttr('data-lightbox');";
+					$script_js .= "$(this).addClass('sldclickdisable');";
+					$script_js .= "$(this).css('cursor','default');";
+				$script_js .= "}";	
+			$script_js .= "})";
+	endif; 
 	
-})
-</script>
+	$script_js .= "});";
+
+	wp_add_inline_script( 'ilist_custom-script', $script_js , 'before' );
+
+?>
+
 <?php
 		
 	}
